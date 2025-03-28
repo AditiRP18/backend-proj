@@ -1,158 +1,178 @@
-# backend-proj
+Backend Project Assignment
 
-📌 PROJECT OVERVIEW
+Project Overview
+This is a backend project built using Node.js, Express, and MongoDB. It provides user authentication, profile management, and JWT-based authorization. The project follows RESTful API standards.
 
-This is a backend API built using Node.js, Express.js, and MongoDB for user authentication and profile management. It provides endpoints for user registration, login, profile retrieval, and updates.
+Features
 
-🚀 Features
+1) User registration and authentication
 
-1) User authentication with JWT
+2) JWT-based authentication for secure access
 
-2) Secure password hashing using bcrypt
+3) Profile management (view and update user profile)
 
-3) MongoDB for database storage
+4) MongoDB integration for data storage
 
-4) Middleware-based authentication
+5) Middleware for authentication and security
 
-5) RESTful API endpoints
+PREREQUISITES
 
-🛠 TECH STACK
+Ensure you have the following installed on your system:
 
-Backend: Node.js, Express.js
+1) Node.js (v14 or later recommended)
 
-Database: MongoDB
+2) MongoDB (Local or cloud-based like MongoDB Atlas)
 
-Authentication: JWT (JSON Web Token)
+#)Git
 
-Middleware: Express.js
+INSTALLATION AND SETUP
 
+1. Clone the Repository
 
-🔧 Setup & Installation
+Open your terminal and run the following command:
 
-1️⃣ Clone the Repository
-
+```
 git clone https://github.com/AditiRP18/backend-proj.git
-
-```
 cd backend-proj
-
 ```
+2. Install Dependencies
 
-2️⃣ Install Dependencies
+Run the following command to install all required Node.js dependencies:
 
+``` npm install ```
+
+3. Configure Environment Variables
+
+Create a .env file in the root directory and add the following variables:
 ```
-npm install
-
-```
-
-3️⃣ Set Up Environment Variables
-
-Create a .env file in the root directory and add:
-
-```
-PORT=3000
+ PORT=3000
 MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
+JWT_SECRET=your_secret_key
 NODE_ENV=development
 ```
+Replace your_mongodb_connection_string with your MongoDB database URL and your_secret_key with a strong secret key for JWT authentication.
 
-Replace your_mongodb_connection_string with your actual MongoDB connection URI.
+4. Start the Server
 
-4️⃣ Start the Server
-
+Run the following command to start the server:
 ```
 npm start
 ```
+The server will run on http://localhost:3000/.
 
-The server will run on http://localhost:3000.
+API Endpoints
 
-📡 API Endpoints
+User Authentication
 
-🔹 Authentication Routes
+1. Register User (POST)
 
-Method
-
-Endpoint
-
-Description
-
-POST
-
-/api/users/register
-
-Register a user
-
-POST
-
-/api/users/login
-
-Login a user
-
-📌 Example Request Body for Registration
+Endpoint:
+```
+http://localhost:3000/api/users/register
+```
+Request Body (JSON):
 ```
 {
   "name": "John Doe",
-  "email": "john@example.com",
+  "email": "johndoe@example.com",
   "password": "securepassword",
   "address": {
     "street": "123 Main St",
     "city": "New York",
     "country": "USA"
   },
-  "bio": "Software Developer"
+  "bio": "Software Developer",
+  "profilePictureUrl": "https://example.com/profile.jpg"
+}
+```
+2. Login User (POST)
+
+Endpoint:
+```
+http://localhost:3000/api/users/login
+```
+Request Body (JSON):
+```
+{
+  "email": "johndoe@example.com",
+  "password": "securepassword"
+}
+```
+3. Get User Profile (GET) - Requires Authorization
+
+Endpoint:
+```
+http://localhost:3000/api/users/profile
+```
+Headers:
+```
+Authorization: Bearer <JWT_TOKEN>
+```
+4. Update User Profile (PUT) - Requires Authorization
+
+Endpoint:
+```
+http://localhost:3000/api/users/profile
+```
+Request Body (JSON):
+```
+{
+  "name": "John Doe Updated",
+  "address": {
+    "street": "456 New St",
+    "city": "Los Angeles",
+    "country": "USA"
+  },
+  "bio": "Full-Stack Developer",
+  "profilePictureUrl": "https://example.com/new-profile.jpg"
 }
 ```
 
-🔹 Protected User Routes (Requires Authorization)
+Testing API Endpoints with Postman
 
-Method
+1) Open Postman and create a new request.
 
-Endpoint
+2) Select the request type (e.g., POST for login/register, GET for fetching user profile).
 
-Description
+3) Enter the API URL, such as http://localhost:3000/api/users/register.
 
-GET
+4) For protected routes, navigate to the Headers tab and add:
 
-/api/users/profile
+   -Key: Authorization
 
-Get user profile
+   -Value: Bearer <JWT_TOKEN> (Replace <JWT_TOKEN> with the token received 
+    during login)
 
-PUT
+5) Click Send to test the API request.
 
-/api/users/profile
+Project Structure
 
-Update user profile
-
-📌 Authorization Header Format
-
-Include the token in request headers:
-
-Authorization: Bearer <JWT_TOKEN>
-
-🧪 Testing with Postman
-
-Register a user: Send a POST request to http://localhost:3000/api/users/register with JSON data.
-
-Login: Send a POST request to http://localhost:3000/api/users/login to get a JWT token.
-
-Access Protected Routes: Use the JWT token in the Authorization header to access GET /api/users/profile.
-
-⚡ Deploying to Production
-
-Set up MongoDB on a cloud provider (MongoDB Atlas or similar).
-
-Use pm2 to run the server in production:
 ```
-npm install -g pm2
-pm2 start server.js --name backend-proj
+backend-proj/
+│── config/          # Configuration files (JWT, Database connection, etc.)
+│── controllers/     # Request handlers (User authentication, Profile management, etc.)
+│── middleware/      # Authentication and security middleware
+│── models/         # Mongoose models
+│── routes/         # API route handlers
+│── server.js       # Main entry point
+│── .env            # Environment variables (ignored in Git)
+│── package.json    # Project dependencies
+
 ```
+Contributing
 
-Deploy using services like Heroku, Vercel, or AWS EC2.
+Contributions are welcome! Feel free to fork this repository and submit a pull request with improvements.
 
-🎯 Contribution
+License
 
-Feel free to contribute! Fork the repo, make changes, and submit a pull request.
+This project is licensed under the MIT License.
 
-📄 License
 
-This project is open-source and available under the MIT License.
+
+
+
+
+
+
+
+
