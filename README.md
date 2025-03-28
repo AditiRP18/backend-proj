@@ -1,22 +1,22 @@
 # backend-proj
 
-📌 Project Overview
+📌 PROJECT OVERVIEW
 
 This is a backend API built using Node.js, Express.js, and MongoDB for user authentication and profile management. It provides endpoints for user registration, login, profile retrieval, and updates.
 
 🚀 Features
 
-User authentication with JWT
+1) User authentication with JWT
 
-Secure password hashing using bcrypt
+2) Secure password hashing using bcrypt
 
-MongoDB for database storage
+3) MongoDB for database storage
 
-Middleware-based authentication
+4) Middleware-based authentication
 
-RESTful API endpoints
+5) RESTful API endpoints
 
-🛠 Tech Stack
+🛠 TECH STACK
 
 Backend: Node.js, Express.js
 
@@ -26,31 +26,43 @@ Authentication: JWT (JSON Web Token)
 
 Middleware: Express.js
 
+
 🔧 Setup & Installation
 
 1️⃣ Clone the Repository
 
 git clone https://github.com/AditiRP18/backend-proj.git
+
+```
 cd backend-proj
+
+```
 
 2️⃣ Install Dependencies
 
+```
 npm install
+
+```
 
 3️⃣ Set Up Environment Variables
 
 Create a .env file in the root directory and add:
 
+```
 PORT=3000
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
 NODE_ENV=development
+```
 
 Replace your_mongodb_connection_string with your actual MongoDB connection URI.
 
 4️⃣ Start the Server
 
+```
 npm start
+```
 
 The server will run on http://localhost:3000.
 
@@ -77,7 +89,7 @@ POST
 Login a user
 
 📌 Example Request Body for Registration
-
+```
 {
   "name": "John Doe",
   "email": "john@example.com",
@@ -89,6 +101,7 @@ Login a user
   },
   "bio": "Software Developer"
 }
+```
 
 🔹 Protected User Routes (Requires Authorization)
 
@@ -129,9 +142,10 @@ Access Protected Routes: Use the JWT token in the Authorization header to access
 Set up MongoDB on a cloud provider (MongoDB Atlas or similar).
 
 Use pm2 to run the server in production:
-
+```
 npm install -g pm2
 pm2 start server.js --name backend-proj
+```
 
 Deploy using services like Heroku, Vercel, or AWS EC2.
 
